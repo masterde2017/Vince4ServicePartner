@@ -22,7 +22,7 @@ public class UserController {
 
 		User user =  userService.loadUserByUsername(name);
 		Person person= new Person();
-		person.setName(user.getUsername());
+		person.setUserName(user.getUsername());
 		return person;
 	}
 	

@@ -10,26 +10,28 @@ import org.springframework.web.client.RestTemplate;
 import com.vince.one.model.AuthTokenInfo;
 
 public class RestClient {
-	
-	public static final String REST_DIRECT_URL="http://localhost:8080/Vince4ServicePartner/test/user_vince";
-	
+
+	public static final String REST_DIRECT_URL = "http://localhost:8080/Vince4ServicePartner/test/user_vince";
+
 	public static final String REST_SERVICE_OAUTH_URL = "http://localhost:8080/Vince4ServicePartner/oauth/token";
 
 	public static final String USERNAME_PASSWORD_GRANT = "?grant_type=password&client_id=client_vince_id&client_secret=secret";
 
 	public static final String ACCESS_TOKEN_URL = "http://localhost:8080/Vince4ServicePartner/test/user_vince?access_token=";
 
-//	private static AuthTokenInfo directReq(String url) {
-//		RestTemplate restTemplate = new RestTemplate();
-//		AuthTokenInfo authTokenInfo = restTemplate.getForObject(url,AuthTokenInfo.class);
-//				
-//		return authTokenInfo;
-//	}
-	
-	//Send a request  to get  authentication  by  username and password
-	private static AuthTokenInfo getGrantedToken(String userName,String password) {
+	// private static AuthTokenInfo directReq(String url) {
+	// RestTemplate restTemplate = new RestTemplate();
+	// AuthTokenInfo authTokenInfo =
+	// restTemplate.getForObject(url,AuthTokenInfo.class);
+	//
+	// return authTokenInfo;
+	// }
+
+	// Send a request to get authentication by username and password
+	private static AuthTokenInfo getGrantedToken(String userName, String password) {
 		RestTemplate restTemplate = new RestTemplate();
-		AuthTokenInfo authTokenInfo = restTemplate.getForObject(REST_SERVICE_OAUTH_URL + USERNAME_PASSWORD_GRANT+"&username="+userName+"&password="+password,
+		AuthTokenInfo authTokenInfo = restTemplate.getForObject(
+				REST_SERVICE_OAUTH_URL + USERNAME_PASSWORD_GRANT + "&username=" + userName + "&password=" + password,
 				AuthTokenInfo.class);
 		return authTokenInfo;
 	}
@@ -50,21 +52,22 @@ public class RestClient {
 	}
 
 	public static void main(String args[]) {
-		
-		// make direct request to the controller, but it won't work,resulted in 401 Unauthorized 
-		//http://localhost:8080/Vince4ServicePartner/test/user_vince
+
+		// make direct request to the controller, but it won't work,resulted in
+		// 401 Unauthorized
+		// http://localhost:8080/Vince4ServicePartner/test/user_vince
 		// System.out.println(directReq(REST_DIRECT_URL));
-		
+
 		// get token object by userName and password
-		AuthTokenInfo tokenObject =  getGrantedToken("user_vince","password");
-		System.out.println("The granted return obejct:"+tokenObject);
-		
+		AuthTokenInfo tokenObject = getGrantedToken("user_vince", "password");
+		System.out.println("The granted return obejct:" + tokenObject);
+
 		// get access_token
 		String accessToken = tokenObject.getAccess_token();
 		// get protected resource by accessToken
 		Object returnObject = retriveUserByAccessToken(accessToken);
 
-		System.out.println("The result of request :"+ returnObject);
+		System.out.println("The result of request :" + returnObject);
 
 	}
 }

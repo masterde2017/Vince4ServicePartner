@@ -2,13 +2,13 @@ package com.vince.one.model;
 
 public class Person {
 
-	String name;
+	String userName;
 	
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String name) {
+		this.userName = name;
 	}
 	
 }

@@ -1,15 +1,15 @@
 Vince4ServicePartner Demo
 ==================
 
-The project is based on framework Spring and Jersey, REST API using spring security oauth2
+The project is based on framework SpringMVC and Jersey, REST API using spring security oauth2
 
 when starting the project, Hibernate will load the data of import_data.sql into the local database
 the data is only for the test of retrieving data through controller
-As we can see form the RestClient class, we can make several requests for test
+As we can see form the RestClient class, we can make several requests for test as below:
 
-1  Request:    http://localhost:8080/Vince4ServicePartner/test/{userName}
+1  Direct Request:    http://localhost:8080/Vince4ServicePartner/test/{userName}
 ----------------------------
- Making request to the controller directly will fail,  401 Unauthorized
+ Making request to the controller directly will fail, resulted 401 Unauthorized
 
 
 2  Get token object by userName and password
@@ -28,10 +28,12 @@ Successful Result:
  expires_in:99
  scope:"read trust write"
 }
-```
 
-3  Getting Protected Resource (using access_token form step 2)
+3  Getting Protected Resource (using access_token from step 2)
 ------------------
+
+HTTPHeaders:  "Authorization: Bearer 542aab03-cedf-41cf-9043-79ae83c2cec7"
+
 Request:
    http://localhost:8080/Vince4ServicePartner/test/user_vince?access_token=542aab03-cedf-41cf-9043-79ae83c2cec7
 
