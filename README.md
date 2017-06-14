@@ -1,14 +1,25 @@
-Oauth 2 Demo
+Vince4ServicePartner Demo
 ==================
 
+The project is based on framework Spring and Jersey, REST API using spring security oauth2
 
-Oauth2 get token object
+when starting the project, Hibernate will load the data of import_data.sql into the local database
+the data is only for the test of retrieving data through controller
+
+1  Request:    http://localhost:8080/Vince4ServicePartner/test/{userName}
 ----------------------------
-```java
-http://localhost:8080/Vince4ServicePartner/oauth/token?grant_type=password&client_id=client_vince_id&client_secret=secret&username=user_vince&password=password
-```
+ Making request to the controller directly will fail,  401 Unauthorized
 
-```java
+
+2  get token object by userName and password
+----------------------------
+Request:
+http://localhost:8080/Vince4ServicePartner/oauth/token?grant_type=password&client_id=client_vince_id&client_secret=secret&username=user_vince&password=password
+
+Failed Request would result in: 401 Unauthorized
+
+Successful Result:
+
 {
  access_token:"542aab03-cedf-41cf-9043-79ae83c2cec7" 
  token_type:"bearer"
@@ -18,6 +29,14 @@ http://localhost:8080/Vince4ServicePartner/oauth/token?grant_type=password&clien
 }
 ```
 
-Protected Resource
+3  Getting Protected Resource (using access_token form step 2)
 ------------------
-http://localhost:8080/Vince4ServicePartner/test/user_vince?access_token=542aab03-cedf-41cf-9043-79ae83c2cec7
+Request:
+   http://localhost:8080/Vince4ServicePartner/test/user_vince?access_token=542aab03-cedf-41cf-9043-79ae83c2cec7
+
+Successful Result (Json Object):
+
+{name=user_vince}
+
+
+

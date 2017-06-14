@@ -11,7 +11,7 @@ import com.vince.one.model.AuthTokenInfo;
 
 public class RestClient {
 	
-	public static final String REST_URL="http://localhost:8080/Vince4ServicePartner";
+	public static final String REST_DIRECT_URL="http://localhost:8080/Vince4ServicePartner/test/user_vince";
 	
 	public static final String REST_SERVICE_OAUTH_URL = "http://localhost:8080/Vince4ServicePartner/oauth/token";
 
@@ -19,6 +19,12 @@ public class RestClient {
 
 	public static final String ACCESS_TOKEN_URL = "http://localhost:8080/Vince4ServicePartner/test/user_vince?access_token=";
 
+//	private static AuthTokenInfo directReq(String url) {
+//		RestTemplate restTemplate = new RestTemplate();
+//		AuthTokenInfo authTokenInfo = restTemplate.getForObject(url,AuthTokenInfo.class);
+//				
+//		return authTokenInfo;
+//	}
 	
 	//Send a request  to get  authentication  by  username and password
 	private static AuthTokenInfo getGrantedToken(String userName,String password) {
@@ -45,9 +51,9 @@ public class RestClient {
 
 	public static void main(String args[]) {
 		
-		// make direct request to the controller, but it won't work
-		//http://localhost:8080/Vince4ServicePartner/user_vince
-
+		// make direct request to the controller, but it won't work,resulted in 401 Unauthorized 
+		//http://localhost:8080/Vince4ServicePartner/test/user_vince
+		// System.out.println(directReq(REST_DIRECT_URL));
 		
 		// get token object by userName and password
 		AuthTokenInfo tokenObject =  getGrantedToken("user_vince","password");
