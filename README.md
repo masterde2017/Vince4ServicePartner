@@ -5,13 +5,14 @@ The project is based on framework Spring and Jersey, REST API using spring secur
 
 when starting the project, Hibernate will load the data of import_data.sql into the local database
 the data is only for the test of retrieving data through controller
+As we can see form the RestClient class, we can make several requests for test
 
 1  Request:    http://localhost:8080/Vince4ServicePartner/test/{userName}
 ----------------------------
  Making request to the controller directly will fail,  401 Unauthorized
 
 
-2  get token object by userName and password
+2  Get token object by userName and password
 ----------------------------
 Request:
 http://localhost:8080/Vince4ServicePartner/oauth/token?grant_type=password&client_id=client_vince_id&client_secret=secret&username=user_vince&password=password
